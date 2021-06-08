@@ -20,6 +20,9 @@ const app = new Vue({
             console.log(resp.data.results);
             this.moviesData = resp.data.results
             })
+            .catch(e => {
+                console.error(e);
+            })
         }
 
     },
