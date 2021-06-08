@@ -4,11 +4,14 @@ const app = new Vue({
     data:{
         urlMovie: 'https://api.themoviedb.org/3/search/movie',
         apiKey: '99b48ac4b26b50b984fcdf28ea59ab53',
-        query: 'a'
+        query: 'a',
+        moviesData: null
 
     },
 
     methods:{
+
+        
 
     },
 
@@ -19,6 +22,7 @@ const app = new Vue({
         .get(fullUrlMovie)
         .then(resp => {
             console.log(resp.data.results);
+            this.moviesData = resp.data.results
         })
 
     }
