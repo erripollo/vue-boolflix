@@ -13,11 +13,12 @@
         <input type="text" v-model="query">
         <button @click="search">Search</button>
 
-        <div v-if="moviesData.length > 0">
+        <div v-if="moviesData">
             <h1>Movies</h1>
-            <ul v-for="movie in moviesData">
+            <ul v-for="movie in moviesData.results">
                 <li>{{movie.title}}</li>
                 <li>{{movie.original_title}}</li>
+                <!-- <li><img :src=" 'https://www.countryflags.io/' + movie.original_language + '/shiny/32.png' " @error="flagsError" alt=""></li> -->
                 <li v-if="movie.original_language !== 'en' && movie.original_language !== 'ja' "><img :src=" 'https://www.countryflags.io/' + movie.original_language + '/shiny/32.png' "></li>
                 <li v-else-if="movie.original_language === 'en'"><img src=" https://www.countryflags.io/gb/shiny/32.png "></li>
                 <li v-else-if="movie.original_language === 'ja'"><img src=" https://www.countryflags.io/jp/shiny/32.png "></li>
@@ -25,9 +26,9 @@
             </ul>
         </div>
 
-        <div v-if="tvShowsData.length > 0">
+        <div v-if="tvShowsData">
             <h1>TV Shows</h1>
-            <ul v-for="tvShow in tvShowsData">
+            <ul v-for="tvShow in tvShowsData.results">
                 <li>{{tvShow.name}}</li>
                 <li>{{tvShow.original_name}}</li>
                 <li v-if="tvShow.original_language !== 'en' && tvShow.original_language !== 'ja' "><img :src=" 'https://www.countryflags.io/' + tvShow.original_language + '/shiny/32.png' "></li>
