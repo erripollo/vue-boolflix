@@ -13,14 +13,29 @@
         <input type="text" v-model="query">
         <button @click="search">Search</button>
 
-        <ul v-for="movie in moviesData">
-            <li>{{movie.title}}</li>
-            <li>{{movie.original_title}}</li>
-            <li v-if="movie.original_language !== 'en' && movie.original_language !== 'ja' "><img :src=" 'https://www.countryflags.io/' + movie.original_language + '/shiny/32.png' "></li>
-            <li v-else-if="movie.original_language === 'en'"><img src=" https://www.countryflags.io/gb/shiny/32.png "></li>
-            <li v-else-if="movie.original_language === 'ja'"><img src=" https://www.countryflags.io/jp/shiny/32.png "></li>
-            <li>{{movie.vote_average}}</li>
-        </ul>
+        <div v-if="moviesData.length > 0">
+            <h1>Movies</h1>
+            <ul v-for="movie in moviesData">
+                <li>{{movie.title}}</li>
+                <li>{{movie.original_title}}</li>
+                <li v-if="movie.original_language !== 'en' && movie.original_language !== 'ja' "><img :src=" 'https://www.countryflags.io/' + movie.original_language + '/shiny/32.png' "></li>
+                <li v-else-if="movie.original_language === 'en'"><img src=" https://www.countryflags.io/gb/shiny/32.png "></li>
+                <li v-else-if="movie.original_language === 'ja'"><img src=" https://www.countryflags.io/jp/shiny/32.png "></li>
+                <li>{{movie.vote_average}}</li>
+            </ul>
+        </div>
+
+        <div v-if="tvShowsData.length > 0">
+            <h1>TV Shows</h1>
+            <ul v-for="tvShow in tvShowsData">
+                <li>{{tvShow.name}}</li>
+                <li>{{tvShow.original_name}}</li>
+                <li v-if="tvShow.original_language !== 'en' && tvShow.original_language !== 'ja' "><img :src=" 'https://www.countryflags.io/' + tvShow.original_language + '/shiny/32.png' "></li>
+                <li v-else-if="tvShow.original_language === 'en'"><img src=" https://www.countryflags.io/gb/shiny/32.png "></li>
+                <li v-else-if="tvShow.original_language === 'ja'"><img src=" https://www.countryflags.io/jp/shiny/32.png "></li>
+                <li>{{tvShow.vote_average}}</li>
+            </ul>
+        </div>
 
 
     </div>
