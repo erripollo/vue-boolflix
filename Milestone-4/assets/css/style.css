@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.wrapper {
+  height: 100vh;
+  width: 100%;
+  background-color: #434343;
+}
+
+#site_header {
+  background-color: black;
+  height: 80px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 15px 30px;
+}
+
+#site_header > h1 {
+  color: #e50f14;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+#site_header > input {
+  height: 30px;
+  width: 200px;
+  font-size: 1.2rem;
+  color: #434343;
+  padding: 0 5px;
+}
+
+#main_site {
+  height: calc(100% - 80px);
+}
+.container {
+  height: 100%;
+  overflow-y: auto;
+}

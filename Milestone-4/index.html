@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolflix</title>
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- /Google fonts -->
+
+    <!-- style.css -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- /style.css -->
+
+</head>
+<body>
+
+    <div id="app">
+
+        <div class="wrapper">
+
+            <header id="site_header">
+                <h1>Boolflix</h1>
+                <input type="text" v-model="query" @keyup.enter="search">
+            </header>
+    
+    
+            <main id="main_site">
+    
+                <div class="container">
+
+                    <div v-if="moviesData">
+                        <h1>Movies</h1>
+                        <ul v-for="movie in moviesData.results">
+                            <li>{{movie.title}}</li>
+                            <li>{{movie.original_title}}</li>
+                            <!-- <li><img :src=" 'https://www.countryflags.io/' + movie.original_language + '/shiny/32.png' " @error="flagsError" alt=""></li> -->
+                            <li v-if="movie.original_language !== 'en' && movie.original_language !== 'ja' "><img :src=" 'https://www.countryflags.io/' + movie.original_language + '/shiny/32.png' "></li>
+                            <li v-else-if="movie.original_language === 'en'"><img src=" https://www.countryflags.io/gb/shiny/32.png "></li>
+                            <li v-else-if="movie.original_language === 'ja'"><img src=" https://www.countryflags.io/jp/shiny/32.png "></li>
+                            <li>{{movie.vote_average}}</li>
+                            <li><img :src="urlPoster + movie.poster_path" alt=""></li>
+                        </ul>
+                    </div>
+            
+                    <div v-if="tvShowsData">
+                        <h1>TV Shows</h1>
+                        <ul v-for="tvShow in tvShowsData.results">
+                            <li>{{tvShow.name}}</li>
+                            <li>{{tvShow.original_name}}</li>
+                            <li v-if="tvShow.original_language !== 'en' && tvShow.original_language !== 'ja' "><img :src=" 'https://www.countryflags.io/' + tvShow.original_language + '/shiny/32.png' "></li>
+                            <li v-else-if="tvShow.original_language === 'en'"><img src=" https://www.countryflags.io/gb/shiny/32.png "></li>
+                            <li v-else-if="tvShow.original_language === 'ja'"><img src=" https://www.countryflags.io/jp/shiny/32.png "></li>
+                            <li>{{tvShow.vote_average}}</li>
+                            <li><img :src="urlPoster + tvShow.poster_path" alt=""></li>
+                        </ul>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+    <!-- CDN Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <!-- CDN axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- main.js -->
+    <script src="./assets/js/main.js"></script>
+
+</body>
+</html>
