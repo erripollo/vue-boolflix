@@ -32,18 +32,25 @@
     
                 <div class="container">
 
-                    <div v-if="moviesData">
-                        <h1>Movies</h1>
-                        <ul v-for="movie in moviesData.results">
-                            <li>{{movie.title}}</li>
-                            <li>{{movie.original_title}}</li>
-                            <!-- <li><img :src=" 'https://www.countryflags.io/' + movie.original_language + '/shiny/32.png' " @error="flagsError" alt=""></li> -->
-                            <li v-if="movie.original_language !== 'en' && movie.original_language !== 'ja' "><img :src=" 'https://www.countryflags.io/' + movie.original_language + '/shiny/32.png' "></li>
-                            <li v-else-if="movie.original_language === 'en'"><img src=" https://www.countryflags.io/gb/shiny/32.png "></li>
-                            <li v-else-if="movie.original_language === 'ja'"><img src=" https://www.countryflags.io/jp/shiny/32.png "></li>
-                            <li>{{movie.vote_average}}</li>
-                            <li><img :src="urlPoster + movie.poster_path" alt=""></li>
-                        </ul>
+                    <h1>Movies</h1>
+                    <div class="cards_movies" v-if="moviesData">
+                        <div class="card" v-for="movie in moviesData.results">
+                            <div class="cover">
+                                <div>
+                                    <img :src="urlPoster + movie.poster_path" alt="">
+                                </div>
+                                
+                            </div>
+                            <div class="back">
+                                <div>{{movie.title}}</div>
+                                <div>{{movie.original_title}}</div>
+                                <!-- <li><img :src=" 'https://www.countryflags.io/' + movie.original_language + '/shiny/32.png' " @error="flagsError" alt=""></li> -->
+                                <div v-if="movie.original_language !== 'en' && movie.original_language !== 'ja' "><img :src=" 'https://www.countryflags.io/' + movie.original_language + '/shiny/32.png' "></div>
+                                <div v-else-if="movie.original_language === 'en'"><img src=" https://www.countryflags.io/gb/shiny/32.png "></div>
+                                <div v-else-if="movie.original_language === 'ja'"><img src=" https://www.countryflags.io/jp/shiny/32.png "></div>
+                                <div>{{movie.vote_average}}</div>
+                            </div>
+                        </div>
                     </div>
             
                     <div v-if="tvShowsData">
