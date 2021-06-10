@@ -9,6 +9,7 @@ const app = new Vue({
         moviesData: null,
         tvShowsData: null,
         urlPoster:'https://image.tmdb.org/t/p/w342',
+        flagsLanguages: ['it', 'en', 'fr', 'ja', 'de', 'es']
 
     },
 
@@ -40,17 +41,11 @@ const app = new Vue({
             })
         },
 
-       /*  flagsError(e){
-
-            if (e.target.src === 'https://www.countryflags.io/en/shiny/32.png') { 
-                e.target.src = "https://www.countryflags.io/gb/shiny/32.png" 
-            }
-            else if (e.target.src === 'https://www.countryflags.io/ja/shiny/32.png') {
-                e.target.src = "https://www.countryflags.io/jp/shiny/32.png" 
-            }
-            
-            
-        } */
+        getFlags(code){
+            if(code === 'en') code = 'gb';
+            if(code === 'ja') code = 'jp';
+            return `https://www.countryflags.io/${code}/flat/32.png`
+        }
 
     },
 
