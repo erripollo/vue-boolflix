@@ -6,9 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boolflix</title>
 
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;700&display=swap" rel="stylesheet">
     <!-- /Google fonts -->
 
     <!-- style.css -->
@@ -30,41 +36,45 @@
     
             <main id="main_site">
     
-                <div class="container">
-
-                    <h1>Movies</h1>
+                <div v-if="moviesData">
+                    <h2>Movies</h2>
                     <div class="cards_movies" v-if="moviesData">
                         <div class="card" v-for="movie in moviesData.results">
                             <div class="cover">
-                                <div>
                                     <img :src="urlPoster + movie.poster_path" alt="">
-                                </div>
-                                
                             </div>
                             <div class="back">
-                                <div>{{movie.title}}</div>
-                                <div>{{movie.original_title}}</div>
+                                <div> <span>Title:</span> {{movie.title}}</div>
+                                <div> <span>Original title:</span> {{movie.original_title}}</div>
                                 <!-- <li><img :src=" 'https://www.countryflags.io/' + movie.original_language + '/shiny/32.png' " @error="flagsError" alt=""></li> -->
-                                <div v-if="movie.original_language !== 'en' && movie.original_language !== 'ja' "><img :src=" 'https://www.countryflags.io/' + movie.original_language + '/shiny/32.png' "></div>
-                                <div v-else-if="movie.original_language === 'en'"><img src=" https://www.countryflags.io/gb/shiny/32.png "></div>
-                                <div v-else-if="movie.original_language === 'ja'"><img src=" https://www.countryflags.io/jp/shiny/32.png "></div>
-                                <div>{{movie.vote_average}}</div>
+                                <div v-if="movie.original_language !== 'en' && movie.original_language !== 'ja' "><img :src=" 'https://www.countryflags.io/' + movie.original_language + '/flat/32.png' "></div>
+                                <div v-else-if="movie.original_language === 'en'"><img src=" https://www.countryflags.io/gb/flat/32.png "></div>
+                                <div v-else-if="movie.original_language === 'ja'"><img src=" https://www.countryflags.io/jp/flat/32.png "></div>
+
+                                <div class="vote_avarege"> 
+                                    <span>Vote:</span>
+                                    <i class="fas fa-star" v-for="star in Math.ceil(movie.vote_average/2)"></i>
+                                    <i class="far fa-star" v-for="starOutline in (5 - Math.ceil(movie.vote_average/2))"></i>
+                                </div>
+
+                                <div> <span>Overview:</span> {{movie.overview}}</div>
                             </div>
                         </div>
                     </div>
-            
-                    <div v-if="tvShowsData">
-                        <h1>TV Shows</h1>
-                        <ul v-for="tvShow in tvShowsData.results">
-                            <li>{{tvShow.name}}</li>
-                            <li>{{tvShow.original_name}}</li>
-                            <li v-if="tvShow.original_language !== 'en' && tvShow.original_language !== 'ja' "><img :src=" 'https://www.countryflags.io/' + tvShow.original_language + '/shiny/32.png' "></li>
-                            <li v-else-if="tvShow.original_language === 'en'"><img src=" https://www.countryflags.io/gb/shiny/32.png "></li>
-                            <li v-else-if="tvShow.original_language === 'ja'"><img src=" https://www.countryflags.io/jp/shiny/32.png "></li>
-                            <li>{{tvShow.vote_average}}</li>
-                            <li><img :src="urlPoster + tvShow.poster_path" alt=""></li>
-                        </ul>
-                    </div>
+
+                </div>
+        
+                <div v-if="tvShowsData">
+                    <h2>TV Shows</h2>
+                    <ul v-for="tvShow in tvShowsData.results">
+                        <li>{{tvShow.name}}</li>
+                        <li>{{tvShow.original_name}}</li>
+                        <li v-if="tvShow.original_language !== 'en' && tvShow.original_language !== 'ja' "><img :src=" 'https://www.countryflags.io/' + tvShow.original_language + '/shiny/32.png' "></li>
+                        <li v-else-if="tvShow.original_language === 'en'"><img src=" https://www.countryflags.io/gb/shiny/32.png "></li>
+                        <li v-else-if="tvShow.original_language === 'ja'"><img src=" https://www.countryflags.io/jp/shiny/32.png "></li>
+                        <li>{{tvShow.vote_average}}</li>
+                        <li><img :src="urlPoster + tvShow.poster_path" alt=""></li>
+                    </ul>
                 </div>
             </main>
         </div>

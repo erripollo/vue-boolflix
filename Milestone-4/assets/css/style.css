@@ -39,19 +39,19 @@ body {
 
 #main_site {
   height: calc(100% - 80px);
-}
-.container {
-  height: 100%;
-  width: 100%;
   overflow-y: auto;
 }
 
 .cards_movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .card {
   position: relative;
   width: fit-content;
+  margin: 0.5rem 1rem;
 }
 .card > .back {
   width: 100%;
@@ -60,10 +60,24 @@ body {
   top: 0;
   left: 0;
   color: white;
+  font-weight: 200;
   background-color: black;
+  padding: 1rem;
+  padding-top: 4rem;
+  border: 2px solid gray;
   display: none;
 }
-
 .card:hover .back {
   display: block;
+}
+
+.card .back span {
+  font-weight: 500;
+}
+
+.back .vote_avarege i.fas {
+  color: orange;
+}
+.back .vote_avarege i.far {
+  color: gray;
 }
