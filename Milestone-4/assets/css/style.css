@@ -1,3 +1,4 @@
+/* Commons */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,6 +15,9 @@ body {
   background-color: #434343;
 }
 
+/**********************
+* Site header 
+**********************/
 #site_header {
   background-color: black;
   height: 80px;
@@ -39,9 +43,19 @@ body {
   margin-bottom: 0.3rem;
 }
 
+/**********************
+* Site main 
+**********************/
 #main_site {
   height: calc(100% - 80px);
   overflow-y: auto;
+}
+
+#main_site h2 {
+  text-transform: uppercase;
+  color: white;
+  margin-top: 3rem;
+  margin-left: 30px;
 }
 
 .cards_movies {
